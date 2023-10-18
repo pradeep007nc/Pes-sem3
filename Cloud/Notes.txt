@@ -1,0 +1,13 @@
+Cloud service
+
+cloud models
+Public cloud 
+Private 
+hybrid
+Public with platform 
+public with infrastructure
+community cloud
+
+saas(software as a service)
+paas(platform as a service)
+iaas(infrastructure as a service)

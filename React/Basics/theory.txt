@@ -1,0 +1,12 @@
+right level of abstraction that depends on your project size
+
+things that matter in abstraction are:
+    component modularity
+    custom hooks
+    third party library
+    container and presentation component
+    component composition 
+
+what is the goals of creating static html file in react
+
+    

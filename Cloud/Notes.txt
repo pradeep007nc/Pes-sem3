@@ -11,3 +11,43 @@ community cloud
 saas(software as a service)
 paas(platform as a service)
 iaas(infrastructure as a service)
+
+
+benifits of public cloud
+    no need maintainence cost
+    high scalability
+    reduced complexity
+    flexible pricing
+    agile for innovation
+
+limitation for public cloud
+    potential for high tco
+    decreased security and availability
+    minimal control
+
+
+benifits of private cloud
+    dedicated and secure
+    regulation complaiant
+    customisable
+    high scalability
+    efficient
+
+limitations of private lcoud
+    expensive with high tco
+    minimal mobile access
+    limiting infrastructure
+
+benifits of hybrid cloud
+    policy driven deployement
+    minimal security risks
+    high scalability
+    improved security
+
+limitations
+    potential for high tco
+    compaptability and integration
+    added complexity
+
+
+

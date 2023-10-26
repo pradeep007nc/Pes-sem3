@@ -51,3 +51,41 @@ limitations
 
 
 
+cloud examples
+IAAS: 
+    Amazon EC2
+    Google compute engine
+    windows azure vms
+
+PAAS
+    google app engine
+
+SAAS
+    salesforce
+    google apps
+
+
+                Aws                 Google                          Azure
+
+compute         EC2                 ComputeEngine                   VM
+storage         s3, ebs             cloud storage                   blob storage
+networking      vpc                 google vpc                      virtual network
+database        Rds, dynamo db      cloud sql, firestore            sql, mysql, cosmo db
+paas            beanstack           app engine                      app service
+saas            workdocs            google docs                     office 365
+ml              sagemaker           cloud vm                        machine learning
+iot             iot core            colut iot core                  iot hub
+
+
+other application od cloud based application and services
+
+    Banking & Financial Apps- Oracle Flexcube, Bank of America's cloud computing
+    E-Commerce Apps- BigCommerce, WooCommerce
+    Social Networking- Twitter, Linked-in, Pinterest
+    Healthcare Systems-NetApp, Pfizer.,Carecloud
+    Energy Systems- Accenture PLC, EnergyPQA
+    Intelligent Transportation Systems-Cubic Transport Management Platform
+    Bhoomi Project (Karnataka): Online Delivery of Land Records, KHAJAÑE (Karnataka): End-to-end automation of Government Treasury System
+    Education-Google Classroom
+    Mobile Communications- Heroku, Digital Ocean. Linode
+

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import './App.css';
+import "./App.css";
+import DemoComponent from "./components/demo-component";
 
 // function CountryCapitalGame({data} : {data: Record<string, string>}) {
 
@@ -17,14 +18,19 @@ import './App.css';
 //   );
 // }
 
-
-
 function App() {
   const [temp, add] = useState(5);
 
-  function onAdd(){
-    add(temp+1);
+  function onAdd() {
+    add(temp + 1);
   }
+
+  function handleClick() {
+    console.log("miamor");
+  }
+
+  const isLoggedIn = () => false;
+
   return (
     <>
       {/* <CountryCapitalGame data={{Germany: 'Berlin', India: 'Delhi'}}/> */}
@@ -32,6 +38,7 @@ function App() {
       {/* using hooks */}
       <button onClick={onAdd}>Add</button>
       <p>value changed {temp} </p>
+      <DemoComponent onClick={handleClick} isLoggedIn={isLoggedIn} />
     </>
   );
 }

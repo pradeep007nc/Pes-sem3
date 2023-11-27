@@ -1,0 +1,6 @@
+differnece between  composite key and primary key
+
+    composite key                           primary key
+
+->  except primary key rest all         ->  it is the unique key which identifies 
+    are composite key                       

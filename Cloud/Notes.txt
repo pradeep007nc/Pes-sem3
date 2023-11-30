@@ -89,6 +89,21 @@ other application od cloud based application and services
     Education-Google Classroom
     Mobile Communications- Heroku, Digital Ocean. Linode
 
+cloud scalability
+    vertical scaling - upgrading the resource(hardware)
+    horizontal scaling - once the server is full next use other server(addition of same type resources)
 
-cloud computing essentials
-    
+deployement
+    it is a iterative approach
+
+    - Development design - variables include number of each tier computing, memory and storage
+    - Performence evalutaion -  to verify wether application meets Performence requirements with deployement
+                                monitoring of the workload on the application mad measuring the parameters such as response and time, throughput
+                                utilisation of cpu in each tier is monitored
+
+cloud deployement management tool - scaler(backup), right scale(design and deploy), kaarvo(automating and scalability), cloudstack(cost effective deployment).
+
+replication is used to create and maintain multiple copy of data in cloud.
+
+
+

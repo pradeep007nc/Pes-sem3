@@ -6,8 +6,8 @@ public class Outer {
 
     int y = 20;
 
-    static class Inner{
-        public void disp(){
+    public class Inner{
+         public void disp(){
             System.out.println(name);
             System.out.println(i);
             System.out.println();

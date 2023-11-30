@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `pessem3`.`GRADUATE_STUDENTS` (
 CREATE TABLE IF NOT EXISTS `pessem3`.`PROF_WORK` (
     `PROF_ID` INT,
     `PROJ_NUMBER` INT,
+    PRIMARY KEY (`PROF_ID`, `PROJ_NUMBER`),
     FOREIGN KEY (`PROF_ID`) REFERENCES `pessem3`.`PROFESSOR` (`PROF_ID`),
     FOREIGN KEY (`PROJ_NUMBER`) REFERENCES `pessem3`.`PROJECTS` (`PROJ_NUMBER`)
 );
@@ -42,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `pessem3`.`PROF_WORK` (
 CREATE TABLE IF NOT EXISTS `pessem3`.`STUDENT_WORK` (
     `USN` VARCHAR(30),
     `PROJ_NUMBER` INT,
+    PRIMARY KEY (`USN`, `PROJ_NUMBER`),
     FOREIGN KEY (`USN`) REFERENCES `pessem3`.`GRADUATE_STUDENTS` (`USN`),
     FOREIGN KEY (`PROJ_NUMBER`) REFERENCES `pessem3`.`PROJECTS` (`PROJ_NUMBER`)
 );
@@ -97,8 +99,8 @@ INSERT INTO `pessem3`.`STUDENT_WORK` VALUES ('101', 11),
 -- QUERY 2
     -- Retrieve the names of all graduate students along with their professors
     -- under whom they work and project sponsor.
- -- Retrieve the names of all graduate students along with their professors
--- under whom they work and project sponsor.
+    -- Retrieve the names of all graduate students along with their professors
+    -- under whom they work and project sponsor.
     SELECT
         `GRADUATE_STUDENTS`.`NAME` AS GRAD_NAME,
         `PROFESSOR`.`NAME` AS PROF_NAME,
@@ -114,27 +116,70 @@ INSERT INTO `pessem3`.`STUDENT_WORK` VALUES ('101', 11),
 
 
 -- QUERY 3
-
+    -- List the professors and sum of the budget of their projects started after 2005
+    -- but ended in 2010.
+    -- List the professors and sum of the budget of their projects started after 2005 but ended in 2010.
+    SELECT
+        `PROFESSOR`.`NAME` AS PROF_NAME,
+        SUM(`PROJECTS`.`BUDGET`) AS Total_Budget
+    FROM
+        `pessem3`.`PROFESSOR`
+    JOIN
+        `pessem3`.`PROJECTS` ON `PROFESSOR`.`PROF_ID` = `PROJECTS`.`PRINCIPAL_INVESTIGATOR`
+    WHERE
+        `PROJECTS`.`STARTING_DATE` > '2005-01-01' AND `PROJECTS`.`ENDING_DATE` < '2011-01-01'
+    GROUP BY
+        `PROFESSOR`.`PROF_ID`, `PROF_NAME`;
+    
 -- QUERY 4
+    -- List the names of professors who has a total worth of project greater
+    -- than the average budget of projects sanctioned
+    SELECT
+        `PROFESSOR`.`NAME` AS PROF_NAME
+    FROM
+        `pessem3`.`PROFESSOR`
+    JOIN
+        `pessem3`.`PROJECTS` ON `PROFESSOR`.`PROF_ID` = `PROJECTS`.`PRINCIPAL_INVESTIGATOR`
+    GROUP BY
+        `PROFESSOR`.`PROF_ID`, `PROF_NAME`
+    HAVING
+        SUM(`PROJECTS`.`BUDGET`) > (SELECT AVG(`BUDGET`) FROM `pessem3`.`PROJECTS`);
+
+-- QUERY 5
+    -- List the professors who work on all the projects.
+    -- List the professors who work on all the projects.
+    SELECT
+        `PROFESSOR`.`NAME` AS PROF_NAME
+    FROM
+        `pessem3`.`PROFESSOR`
+    WHERE
+        NOT EXISTS (
+            SELECT `PROJ_NUMBER`
+            FROM `pessem3`.`PROJECTS`
+            WHERE `PRINCIPAL_INVESTIGATOR` = `PROFESSOR`.`PROF_ID`
+            EXCEPT
+            SELECT `PROJ_NUMBER`
+            FROM `pessem3`.`PROF_WORK`
+        );
 
 
 -- EXTRA QUERIES
 
 -- QUERY 1
 
--- SELECT `PROFESSOR`.`NAME`, COUNT(`GRADUATE_STUDENTS`.`USN`) 
--- FROM `pessem3`.`PROFESSOR`
--- LEFT JOIN `pessem3`.`GRADUATE_STUDENTS` 
--- ON `PROFESSOR`.`PROF_ID` = `GRADUATE_STUDENTS`.`PROF_ID`
--- GROUP BY `PROFESSOR`.`PROF_ID`, `PROFESSOR`.`NAME`;
+SELECT `PROFESSOR`.`NAME`, COUNT(`GRADUATE_STUDENTS`.`USN`) 
+FROM `pessem3`.`PROFESSOR`
+LEFT JOIN `pessem3`.`GRADUATE_STUDENTS` 
+ON `PROFESSOR`.`PROF_ID` = `GRADUATE_STUDENTS`.`PROF_ID`
+GROUP BY `PROFESSOR`.`PROF_ID`, `PROFESSOR`.`NAME`;
 
 
 -- -- QUERY 2
 
--- SELECT `PROFESSOR`.`NAME`, COUNT(`PROJECTS`.`PROJ_NUMBER`)
--- FROM `pessem3`.`PROFESSOR`
--- LEFT JOIN `pessem3`.`PROJECTS`
--- ON `PROFESSOR`.`PROF_ID` = `PROJECTS`.`PRINCIPAL_INVESTIGATOR`
--- GROUP BY `PROFESSOR`.`PROF_ID`, `PROFESSOR`.`NAME`;
+SELECT `PROFESSOR`.`NAME`, COUNT(`PROJECTS`.`PROJ_NUMBER`)
+FROM `pessem3`.`PROFESSOR`
+LEFT JOIN `pessem3`.`PROJECTS`
+ON `PROFESSOR`.`PROF_ID` = `PROJECTS`.`PRINCIPAL_INVESTIGATOR`
+GROUP BY `PROFESSOR`.`PROF_ID`, `PROFESSOR`.`NAME`;
 
 -- QUERY 3

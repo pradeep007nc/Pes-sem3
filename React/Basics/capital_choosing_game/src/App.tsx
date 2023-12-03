@@ -1,83 +1,47 @@
-import { useState } from "react";
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import "./App.css";
-import Eventlisteners from "./components/eventlisteners";
-import SortingModule from "./components/SortingModule";
-import Events2 from "./components/events2";
-import Compo from "./components/compo";
-import DemoComponent from "./components/demo-component";
-import Button2 from "./components/button2";
-import MapComponent from "./components/map";
-import ProfileComponent from "./components/props-demo";
-import VegetableTable from "./components/vegitable-list";
-import TableComponent from "./components/table-component";
-// import Hooks from "./components/Hooks";
-import TodoComponent from "./components/todo/TodoComponent";
-import Hooks from "./components/Hooks";
-import Validation from "./components/validation";
+import React, { ReactNode } from "react";
+import {StateComponent} from "../src/components2/StateComponent";
 
-function CountryCapitalGame({data} : {data: Record<string, string>}) {
+class App extends React.Component {
+  state = {
+    time: 1,
+  };
 
-  const countries = Object.keys(data);
-  const capitals = Object.values(data);
-  const options = [...countries, ...capitals];
+  incrementTime = () => {
+    this.setState(() => ({
+      time: this.state.time + 1,
+    }));
+  };
 
-  return (
-  <>{options.map((data) => (
-      <button className='btn btn-primary'>{data}</button>
-    ))}
-  </>
-  );
-}
+  timer = () => {
+    setTimeout(() => {
+      this.incrementTime();
+    }, 10);
+  };
 
-interface Vegetable {
-  id: number;
-  name: string;
-  color: string;
-  price: number;
-}
+  obj: any = {
+    a: 1,
+    b: 2,
+    c: 3,
+  };
 
-function App() {
-  const [temp, add] = useState(5); 
+  render(): ReactNode {
+    return (
+      <>
+        <h1>{this.state.time}</h1>
+        <button onClick={this.timer} onMouseEnter={this.incrementTime}>
+          Click Me
+        </button>
 
-  function handleClick() {
-    console.log("miamor");
+        <ul>
+          {Object.keys(this.obj).map((data: string) => { 
+            return <li>{data} {this.obj[data]}</li>
+          })}
+        </ul>
+
+        <StateComponent/>
+      </>
+    );
   }
-
-
-
-  const isLoggedIn = () => false;
-
-  const vegetables: Vegetable[] = [
-    { id: 1, name: "naved bete", color: "Orange", price: 2.5 },
-    { id: 2, name: "naved lodu", color: "Red", price: 1.5 },
-    { id: 3, name: "suraj thin", color: "Brown", price: 0.5 },
-  ];
-
-  return (
-    <>
-      <CountryCapitalGame data={{Germany: 'Berlin', India: 'Delhi'}}/>
-      <p>Hi {temp} </p>
-      using hooks
-      <button onClick={() => {add(temp+1)}}>Add</button>
-      <p>value changed {temp} </p>
-      <DemoComponent onClick={handleClick} isLoggedIn={isLoggedIn} />
-      <Button2 disabled={true} text="Disabled Button" />
-      <MapComponent />
-      <ProfileComponent />
-      <VegetableTable vegetables={vegetables} />
-      <TableComponent />
-      <Hooks props={vegetables}/>
-      <TodoComponent />
-      <Eventlisteners />
-      <SortingModule />
-      <Events2 />
-      <Compo />
-      <Validation email={"mail.com"}/>
-    </>
-  );
 }
 
 export default App;

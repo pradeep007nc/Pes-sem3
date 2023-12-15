@@ -4,3 +4,59 @@ differnece between  composite key and primary key
 
 ->  except primary key rest all         ->  it is the unique key which identifies 
     are composite key                       
+
+
+plsql
+
+    plsql is a combination of sql along with procedural features of programming languages
+    plsql extends sql by adding programming structure and subroutines available in high level languages
+    it can be used to server-side and client-side development
+
+execution of plsql
+
+    one block is executed which has multipel statements block contains both plsql and sql instruction
+
+features
+
+    it is tightly coupled with the sql it providdes acess to predefined sql packages
+    it provides support for developing web applications and server-side development
+    it offers extensive error checking 
+    numerous data types
+    variety of programming structure
+    it support structured programming through function and procedures
+
+block structure
+    plsql has a predefined block structure in which code is grouped through different section of plsql block
+    1. declaration section
+    2. execution section
+    3. exeption handling section
+
+plsql block structure
+    DECLARE --OPTIONAL
+        <DECLARATIONS>
+    BEGIN --MANDATORY
+        <EXECUTABLE STATEMENTS ATLEAST ONE STATEMENT>
+    EXCEPTION --OPTIONAL
+        <EXCEPTION HANDLING STATEMENTS>
+    END --MANDATORY
+        
+
+EXAMPLE 1
+    BEGIN 
+        dbms_ouput.put_line('hello');
+    END;
+
+EX 2:
+    DECLARE
+        MESSAGE VARCHAR(20) := 'HELLO';
+    BEGIN
+        dbms_ouput.put_line(MESSAGE);
+    END;
+
+variable description in sql 
+    const is by default not null and default value of var is null
+
+calculate employee avg salary department number 10 and find avg salary department 20 
+    if avg salary of department 20 is greater thant the dept 10 update the salary 20% where dept no is 20
+    if records are found how many records are updated and if not found then  display salary is not updated
+    write the program using cursor
